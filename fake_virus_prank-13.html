@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Системное предупреждение</title>
+<style>
+body{margin:0;background:#050505;color:#ff2020;font-family:monospace;text-align:center;display:flex;align-items:center;justify-content:center;min-height:100vh}
+.box{width:90%;max-width:600px}
+h1{font-size:clamp(26px,7vw,48px)}
+.bar{height:28px;border:2px solid #ff2020;margin:25px 0}
+#progress{height:100%;width:0;background:#ff2020}
+#percent{font-size:20px}
+button{margin-top:25px;padding:12px 20px;font-size:18px;background:#ff2020;color:white;border:0;border-radius:8px}
+.safe{color:#39ff6a}
+</style>
+</head>
+<body>
+<div class="box">
+<h1 id="title">⚠️ ОБНАРУЖЕН ВИРУС ⚠️</h1>
+<div class="bar"><div id="progress"></div></div>
+<div id="percent">Сканирование: 0%</div>
+<p id="status">Проверка системы...</p>
+</div>
+<script>
+let p=0;
+const timer=setInterval(()=>{
+  p++;
+  document.getElementById('progress').style.width=p+'%';
+  document.getElementById('percent').textContent='Сканирование: '+p+'%';
+  if(p>=100){
+    clearInterval(timer);
+    document.getElementById('title').textContent='😂 ЭТО БЫЛ ПРИКОЛ!';
+    document.getElementById('title').className='safe';
+    document.getElementById('percent').textContent='Вируса нет — телефон в безопасности 👍';
+    document.getElementById('status').textContent='Ничего не было установлено или изменено.';
+    document.getElementById('progress').className='safe';
+  }
+},50);
+</script>
+</body>
+</html>
